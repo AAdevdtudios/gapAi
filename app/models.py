@@ -3,9 +3,10 @@ from tortoise import fields
 from tortoise.contrib.pydantic import pydantic_model_creator
 from .utils import verify_password
 from datetime import timedelta
+import uuid
 
 class User(Model):
-    id = fields.IntField(primary_key=True)
+    id = fields.UUIDField(primary_key=True, default=uuid.uuid4)
     firstname= fields.CharField(max_length=100)
     lastname=fields.CharField(max_length=100)
     username= fields.CharField(max_length=50, unique=True)
@@ -27,5 +28,5 @@ class AiData(Model):
     owner = fields.ForeignKeyField("models.User", related_name="projects", on_delete=fields.CASCADE)
 
 
-User_pydantic = pydantic_model_creator(User, name = "User", exclude={"password_hash",})
+User_pydantic = pydantic_model_creator(User, name = "User", exclude={"password_hash","created", "update", "verify_user"})
 User_pydanticIn = pydantic_model_creator(User, name="UserIn", exclude_readonly=True)
