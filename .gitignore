@@ -1,0 +1,5 @@
+gapVenv
+__pycache__
+db.sqlite3
+migrations
+pyproject.toml

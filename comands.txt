@@ -1,0 +1,9 @@
+aerich migrate --name {name}
+aerich upgrade
+aerich history
+
+
+aerich init-db
+aerich init -t tortoise_config.TORTOISE_ORM
+aerich init -h
+aerich -h
