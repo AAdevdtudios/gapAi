@@ -1,5 +1,14 @@
 {
   "cSpell.words": [
     "fastapi"
+  ],
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "GAP-DB",
+      "database": "${workspaceFolder:gapAi}/db.sqlite3"
+    }
   ]
 }

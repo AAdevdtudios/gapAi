@@ -28,5 +28,5 @@ class AiData(Model):
     owner = fields.ForeignKeyField("models.User", related_name="projects", on_delete=fields.CASCADE)
 
 
-User_pydantic = pydantic_model_creator(User, name = "User", exclude={"password_hash","created", "update", "verify_user"})
+User_pydantic = pydantic_model_creator(User, name = "User", exclude={"password_hash","created", "update"})
 User_pydanticIn = pydantic_model_creator(User, name="UserIn", exclude_readonly=True)

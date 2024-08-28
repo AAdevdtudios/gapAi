@@ -3,13 +3,16 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 import uvicorn
 from app.app import router
+from app.authUsers import auth_router
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise_config import TORTOISE_ORM
 
 
 api = FastAPI(title="GAP api")
 
+
 api.include_router(router=router)
+api.include_router(router=auth_router)
 
 @api.exception_handler(RequestValidationError)
 async def value_error(request:Request, exc:RequestValidationError):

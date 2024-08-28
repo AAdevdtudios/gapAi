@@ -1,7 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import JSONResponse
 from .schemas import UserDTO, UserLoginDTO, ResponseMessage
-from .services import create_user, login_user, verify_user_token
+from .services import create_user, get_current_user, get_user_info, login_user, verify_user_token
+from .models import User_pydantic
 
 router = APIRouter(tags=["Authentication"])
 
@@ -26,7 +27,3 @@ async def verify_user(userId:str,token:str):
     content["message"]= val.message
     content["data"]=val.data
     return JSONResponse(status_code=val.status, content=content)
-
-@router.get("/")
-def getUser():
-    return {"details":"All good with the network"}
