@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr, field_validator
 from pydantic.fields import Field
 import re
-from .models import User
 from typing import Any
 
 class UserDTO(BaseModel):
