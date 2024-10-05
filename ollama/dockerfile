@@ -1,0 +1,3 @@
+from ollama/ollama
+
+COPY ./pull-llm.sh /pull-llm.sh

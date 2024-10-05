@@ -1,19 +1,17 @@
 from app.schemas.user_schemas import ResetPassword, ResponseMessage
 from app.models.dbModels import User, User_pydantic
 from fastapi import HTTPException, status
+from fastapi.encoders import jsonable_encoder
 
 from app.utils.app_utils import generate_reset_password_token, hash_password, generate_verification_token, verify_reset_password_token
 
 
 # Auth User Services
 
-async def get_user_info(userId:str)->ResponseMessage:
+async def get_user_info(user)->ResponseMessage:
     try:
-        data = await User.get(id=userId)
-        user = await User_pydantic.from_tortoise_orm(data)
-        return ResponseMessage(message="User Information", status=status.HTTP_200_OK, data=user.model_dump())
+        return ResponseMessage(message="User Information", status=status.HTTP_200_OK, data=jsonable_encoder(user))
     except Exception as e:
-        print(e)
         raise HTTPException(status_code=400, detail="Un authorized user")
 
 async def send_verification_authenticated_user(userId:str):

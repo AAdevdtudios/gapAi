@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ollama:
+    build: ollama
+    container_name: ollama_container
+    ports:
+      - 11434:11434
+    volumes:
+      - ollama-vol:/ollama  # Mount a directory on your machine to the container
+    entrypoint: ["/usr/bin/bash", "/pull-llm.sh"]
+    restart: always  # Optional: restarts the container automatically if it stops
+volumes:
+  ollama-vol:
+    driver: local

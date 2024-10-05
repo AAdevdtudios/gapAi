@@ -4,3 +4,4 @@ db.sqlite3
 migrations
 pyproject.toml
 .env
+test_langchain/

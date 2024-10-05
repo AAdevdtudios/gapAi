@@ -11,7 +11,8 @@ user_router = APIRouter(tags=["User"])
 # Get User information
 @user_router.get("/me")
 async def get_User(user=Depends(get_current_user)):
-    return user
+  val = await get_user_info(user)
+  return JSONResponse(status_code=val.status, content=val.model_dump())
 
 # Send verification email to authenticated user only
 @user_router.get("/send-email")
